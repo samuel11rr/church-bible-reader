@@ -1,0 +1,131 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --main-color: skyblue;
+}
+
+body, #app {
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#text {
+  overflow-y: auto;
+  height: calc(100vh - 50px);
+  width: calc(100% - 0px);
+}
+
+#controls {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5px 20px;
+  width: calc(100% - 40px);
+  border-top: 1px solid gainsboro
+}
+
+.controls-item {
+  display: flex;
+  padding: 0px 40px;
+}
+
+.controls-input {
+  height: 30px;
+  padding: 0px 8px;
+  color: dimgrey;
+  font-size: 1rem;
+  outline: 1px solid var(--main-color);
+  border: 1px solid var(--main-color);
+}
+
+.controls-input:first-child {
+  border-radius: 8px 0px 0px 8px;
+}
+
+.controls-input:last-child {
+  border-radius: 0px 8px 8px 0px;
+}
+
+.controls-input:only-child {
+  border-radius: 8px 8px 8px 8px;
+  
+}
+
+.controls-button {
+  height: 32px;
+  padding: 0px 20px;
+  background: var(--main-color);
+  border: 1px solid var(--main-color);
+  outline: 1px solid var(--main-color);
+  min-width: 40px;
+}
+
+#input-zoom {
+  user-select: none;
+  width: 60px;
+  text-align: center;
+}
+
+input[type="number"]#input-zoom::-webkit-outer-spin-button,
+input[type="number"]#input-zoom::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"]#input-zoom {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+#text-container {
+  padding: 10px;
+  color: #4f5052;
+  font-weight: 500;
+}
+
+
+/* Forced styles */
+.bk_ch_vs_header,
+.psa-book {
+  display: none;
+}
+
+.psa-title,
+.selah {
+  color: gray;
+}
+
+.chapter-number {
+  margin-top: 0px !important;
+  margin-bottom: 10px !important;
+  font-weight: bolder !important;
+  font-variant: small-caps;
+}
+
+.vn {
+  color: slategray;
+  font-size: 85%;
+}
+
+.red {
+  color: #c90000 !important;
+}
+
+a.a-tn {
+  display: none;
+}
