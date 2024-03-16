@@ -1,7 +1,11 @@
 let text = '';
 
 export const setText = (newText) => {
-  document.querySelector('#text-container').innerHTML = newText;
+  const textContainer = document.querySelector('#text-container');
+  textContainer.innerHTML = newText;
+
+  const textParent = document.querySelector('#text');
+  textParent.scrollTop = textParent.offsetTop;
 }
 
 export const textElem = `
