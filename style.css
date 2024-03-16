@@ -17,6 +17,14 @@ body, #app {
   height: 100vh;
 }
 
+::-moz-selection { /* Code for Firefox */
+  background: #ffffaf;
+}
+
+::selection {
+  background: #ffffaf;
+}
+
 #main {
   display: flex;
   flex-direction: column;

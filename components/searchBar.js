@@ -8,6 +8,7 @@ export const searchBar = `
         id="search-box"
         class="controls-input"
         type="text"
+        autocomplete="off"
       >
 
       <button
