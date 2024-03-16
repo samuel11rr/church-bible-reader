@@ -17,14 +17,6 @@ body, #app {
   height: 100vh;
 }
 
-::-moz-selection { /* Code for Firefox */
-  background: #ffffaf;
-}
-
-::selection {
-  background: #ffffaf;
-}
-
 #main {
   display: flex;
   flex-direction: column;
@@ -106,6 +98,17 @@ input[type="number"]#input-zoom {
   font-weight: 500;
 }
 
+::-moz-selection {
+  background: #ffffaf;
+}
+
+::selection {
+  background: #ffffaf;
+}
+
+input::selection { background: lightblue }
+input::-moz-selection { background: lightblue; }
+input::-webkit-selection { background: lightblue; }
 
 /* Forced styles */
 .bk_ch_vs_header,
