@@ -53,6 +53,10 @@ body, #app {
   border: 1px solid var(--main-color);
 }
 
+.controls-input::placeholder {
+  color: lightgrey;
+}
+
 .controls-input:first-child {
   border-radius: 8px 0px 0px 8px;
 }
@@ -68,11 +72,21 @@ body, #app {
 
 .controls-button {
   height: 32px;
-  padding: 0px 20px;
+  padding: 0px 5px;
   background: var(--main-color);
   border: 1px solid var(--main-color);
   outline: 1px solid var(--main-color);
   min-width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.controls-button img {
+  width: 24px;
+  height: 24px;
+  opacity: 0.6;
 }
 
 #input-zoom {

@@ -1,5 +1,6 @@
 import { getText } from "../services/http";
 import { setText } from "./text";
+import { fullScreenButton, initFullScreenButton } from "./buttonFullscreen";
 
 export const searchBar = `
   <div id="controls">
@@ -9,13 +10,14 @@ export const searchBar = `
         class="controls-input"
         type="text"
         autocomplete="off"
+        placeholder="Buscar cita"
       >
 
       <button
         id="search-button"
         class="controls-input controls-button"
       >
-        Buscar
+        <img src="/icons/text-search.svg"/>
       </button>
     </div>
 
@@ -24,7 +26,7 @@ export const searchBar = `
         id="btn-zoom-out"
         class="controls-input controls-button"
       >
-        -
+        <img src="/icons/zoom-out.svg"/>
       </button>
       
       <input
@@ -41,24 +43,19 @@ export const searchBar = `
         id="btn-zoom-in"
         class="controls-input controls-button"
       >
-        +
+        <img src="/icons/zoom-in.svg"/>
       </button>
     </div>
 
-    <!--
     <div class="controls-item">
-      <button
-        id="btn-fullscreen"
-        class="controls-input controls-button"
-      >
-        Pantalla completa
-      </button>
+      ${ fullScreenButton }
     </div>
-    -->
   </div>
 `;
 
 export const initSearchBar = () => {
+  initFullScreenButton();
+
   const searchBox = document.querySelector('#search-box');
   const searchButton = document.querySelector('#search-button');
   const inputZoom = document.querySelector('#input-zoom');
