@@ -83,6 +83,21 @@ export const initSearchBar = () => {
     console.log(text);
     
     setText(text);
+
+    // TODO: add funtionality to open on external screen
+    // const window2 = window.open();
+    // const textContainer = window2.document.createElement('div');
+    // textContainer.setAttribute('id', 'text-container');
+    // window2.document.body.appendChild(textContainer);
+
+    // const styleElem = window2.document.createElement('style');
+    // window2.document.head.appendChild(styleElem);
+
+    // for (let index = 0; index < Object.entries(document.styleSheets[0].cssRules).length; index++) {
+    //   styleElem.sheet.insertRule(document.styleSheets[0].cssRules[index].cssText);
+    // }
+    
+    // textContainer.innerHTML = text;
   }
 
   const changeZoom = (type) => {
