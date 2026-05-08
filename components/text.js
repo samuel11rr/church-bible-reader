@@ -1,3 +1,5 @@
+import { EmptyScreen } from "./emptyScreen";
+
 let text = '';
 
 export const setText = (newText) => {
@@ -8,8 +10,10 @@ export const setText = (newText) => {
   textParent.scrollTop = textParent.offsetTop;
 }
 
+  const content = text || EmptyScreen;
+
 export const textElem = `
   <div id="text-container">
-    ${text}
+    ${content}
   </div>
 `;
