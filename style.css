@@ -9,6 +9,7 @@
   -moz-osx-font-smoothing: grayscale;
 
   --main-color: skyblue;
+  --error: red;
 }
 
 body, #app {
@@ -51,6 +52,7 @@ body, #app {
   font-size: 1rem;
   outline: 1px solid var(--main-color);
   border: 1px solid var(--main-color);
+  transition: 0.3s;
 }
 
 .controls-input::placeholder {
@@ -81,6 +83,13 @@ body, #app {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+
+.controls-button:disabled {
+  background: lightgray;
+  border: 1px solid lightgray;
+  outline: 1px solid lightgray;
+  cursor: default;
 }
 
 .controls-button img {
@@ -178,4 +187,28 @@ a.a-tn {
 #search-box::placeholder {
   text-transform: none;
   color: darkgrey;
+}
+
+#search-box.input-error {
+  outline: 1px solid var(--error);
+  border: 1px solid var(--error);
+  transition: 0.3s;
+}
+
+.spinner {
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#search-button__spinner {
+  display: none;
 }
