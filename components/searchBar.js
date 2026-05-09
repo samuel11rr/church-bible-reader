@@ -2,6 +2,7 @@ import { getText } from "../services/http";
 import { setText } from "./text";
 import { fullScreenButton, initFullScreenButton } from "./buttonFullscreen";
 import { getFromLocalStorage, saveToLocalStorage } from "../helpers/storage";
+import { processQueryParts } from "../helpers/search-utils";
 
 export const searchBar = `
   <div id="controls">
@@ -75,14 +76,23 @@ export const initSearchBar = () => {
     }
   });
   
-  const searchText = async (query) => {
-    if (!query) return;
+  let activeQuery = '';
 
-    const response = await getText(query);
+  const searchText = async (query) => {
+    if (!query || activeQuery === query) return;
+    
+    const {processedQuery, bookName, chapter} = processQueryParts(query.toLowerCase().trim());
+    if (!bookName) {
+      return searchBox.classList.add('input-error');
+    }
+
+    activeQuery = query;
+    searchBox.classList.remove('input-error');
+    const response = await getText(processedQuery);
     const text = await response.text() || '';
     
     setText(text);
-    setTimeout(() => changeZoom(), 50)
+    changeZoom();
 
     // TODO: add funtionality to open on external screen
     // const window2 = window.open();
