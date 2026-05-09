@@ -1,6 +1,7 @@
 import { getText } from "../services/http";
 import { setText } from "./text";
 import { fullScreenButton, initFullScreenButton } from "./buttonFullscreen";
+import { getFromLocalStorage, saveToLocalStorage } from "../helpers/storage";
 
 export const searchBar = `
   <div id="controls">
@@ -55,16 +56,19 @@ export const searchBar = `
 
 export const initSearchBar = () => {
   initFullScreenButton();
-
+  
   const searchBox = document.querySelector('#search-box');
   const searchButton = document.querySelector('#search-button');
   const inputZoom = document.querySelector('#input-zoom');
   const buttonZoomIn = document.querySelector('#btn-zoom-in');
   const buttonZoomOut = document.querySelector('#btn-zoom-out');
-
+  const textContainer = document.querySelector('#text-container');
+  const imageElem = document.querySelector('#empty-screen-image');
+  
   buttonZoomIn.addEventListener('click', () => changeZoom('in'));
   buttonZoomOut.addEventListener('click', () => changeZoom('out'));
   searchButton.addEventListener('click', () => searchText(searchBox.value));
+
   searchBox.addEventListener('keyup', (event) => {
     if (event.key === 'Enter') {
       searchText(searchBox.value)
@@ -76,10 +80,9 @@ export const initSearchBar = () => {
 
     const response = await getText(query);
     const text = await response.text() || '';
-
-    console.log(text);
     
     setText(text);
+    setTimeout(() => changeZoom(), 50)
 
     // TODO: add funtionality to open on external screen
     // const window2 = window.open();
@@ -97,7 +100,19 @@ export const initSearchBar = () => {
     // textContainer.innerHTML = text;
   }
 
-  const changeZoom = (type) => {
+  const getStoredZoom = () => {
+    const savedZoom = getFromLocalStorage('zoom');
+    
+    if (savedZoom) {
+      inputZoom.value = savedZoom;
+      if (!imageElem) {
+        textContainer.style.zoom = `${ savedZoom }%`;
+      }
+    }
+    
+  }
+
+  const changeZoom = (type = undefined) => {
     const { value, step, min, max } = inputZoom;
     const currentZoom = Number(value);
     const zoomStep = Number(step);
@@ -107,8 +122,15 @@ export const initSearchBar = () => {
     if (type === 'in' && currentZoom === zoomMax) return;
     if (type === 'out' && currentZoom === zoomMin) return;
 
-    const zoom = type === 'in' ? currentZoom + zoomStep : currentZoom - zoomStep;
-    document.querySelector('#text-container').style.zoom = `${ zoom }%`;
+    const zoom = !type
+      ? currentZoom : type === 'in'
+        ? currentZoom + zoomStep : currentZoom - zoomStep;
+
     inputZoom.value = zoom;
+    saveToLocalStorage('zoom', zoom);
+    if (document.body.contains(imageElem)) return;
+    textContainer.style.zoom = `${ zoom }%`;
   }
+
+  getStoredZoom();
 };

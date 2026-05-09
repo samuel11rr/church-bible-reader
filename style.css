@@ -166,4 +166,16 @@ a.a-tn {
 
 .empty-screen__image {
   opacity: 10%;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+#search-box {
+  text-transform: uppercase;
+}
+
+#search-box::placeholder {
+  text-transform: none;
+  color: darkgrey;
 }
