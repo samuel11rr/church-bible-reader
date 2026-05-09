@@ -85,6 +85,13 @@ body, #app {
   cursor: pointer;
 }
 
+.controls-button:disabled {
+  background: lightgray;
+  border: 1px solid lightgray;
+  outline: 1px solid lightgray;
+  cursor: default;
+}
+
 .controls-button img {
   width: 24px;
   height: 24px;
@@ -186,4 +193,22 @@ a.a-tn {
   outline: 1px solid var(--error);
   border: 1px solid var(--error);
   transition: 0.3s;
+}
+
+.spinner {
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#search-button__spinner {
+  display: none;
 }

@@ -19,7 +19,8 @@ export const searchBar = `
         id="search-button"
         class="controls-input controls-button"
       >
-        <img src="/icons/text-search.svg"/>
+        <img src="/icons/text-search.svg" id="search-button__icon"/>
+        <img src="/icons/spinner.png" id="search-button__spinner" class="spinner" />
       </button>
     </div>
 
@@ -60,6 +61,8 @@ export const initSearchBar = () => {
   
   const searchBox = document.querySelector('#search-box');
   const searchButton = document.querySelector('#search-button');
+  const searchIcon = document.querySelector('#search-button__icon');
+  const searchSpinner = document.querySelector('#search-button__spinner');
   const inputZoom = document.querySelector('#input-zoom');
   const buttonZoomIn = document.querySelector('#btn-zoom-in');
   const buttonZoomOut = document.querySelector('#btn-zoom-out');
@@ -86,6 +89,10 @@ export const initSearchBar = () => {
       return searchBox.classList.add('input-error');
     }
 
+    searchButton.disabled = true;
+    searchIcon.style.display = 'none';
+    searchSpinner.style.display = 'block';
+    
     activeQuery = query;
     searchBox.classList.remove('input-error');
     const response = await getText(processedQuery);
@@ -93,6 +100,10 @@ export const initSearchBar = () => {
     
     setText(text);
     changeZoom();
+
+    searchIcon.style.display = 'block';
+    searchSpinner.style.display = 'none';
+    searchButton.disabled = false;
 
     // TODO: add funtionality to open on external screen
     // const window2 = window.open();
